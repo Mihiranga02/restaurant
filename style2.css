@@ -1,0 +1,271 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins Regular';
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+section{
+    width: 100%;
+}
+/* navigatin bar box */
+section nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: #fac031;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+/* logo size */
+section nav .logo img{
+    width: 120px;
+    cursor: pointer;
+    margin: 7px 0 0 50px;
+}
+/* style of list */
+section nav ul{
+    list-style: none;
+    padding-right: 50px;
+}
+/* get list in to a one line */
+section nav ul li{
+    display: inline-block;
+    margin: 0 15px;
+}
+/* text style of navigation bar */
+section nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 17px;
+    transition: 0.1s;
+}
+/* text transition when cursor move */
+section nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    display: block;
+    transition: 0.2s linear;
+}
+
+section nav ul li a:hover::after{
+    width: 100%;
+}
+
+section nav ul li a:hover{
+    color: #ffffff;
+}
+
+/* catogary menu */
+.menu{
+    width: 100%;
+    padding-top: 120px;
+}
+/* menu text style */
+.menu h1{
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: #000000;
+    border: 0;
+    border-bottom: 5px solid;
+    border-image: linear-gradient(90deg, #f2f3f3, #fad400, #f2f3f3) 1 stretch;
+}
+
+
+/* menu boxes size */
+.menu .menu_box{
+    width: 100%;
+    margin: auto;
+    padding-left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+/* shadows of menu boxes */
+.menu .menu_box .menu_card{
+    width: 315px;
+    height: 420px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    background-color: #8d8d7d00;
+    box-shadow: 0 0 20px 10px rgba(0,0,0,0.2);
+}
+/* image size of menu list */
+.menu .menu_box .menu_card .menu_image{
+    width: 290px;
+    height: 235px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/* menu img transition */
+.menu .menu_box .menu_card .menu_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .menu_image:hover img{
+    transform: scale(1.1);
+}
+
+/* food name style */
+.menu .menu_box .menu_card h2{
+    width: 60%;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    font-size: 20px;
+    color: #fac031;
+}
+/* price box */
+.menu .menu_box .menu_card h3{
+    text-align: center;
+    margin: 10px 0 10px 0;
+}
+/* price box text style */
+.menu .menu_box .menu_card h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background: #000;
+    padding: 2px 10px;
+    margin: 0 80px;
+}
+.menu_card a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background: #fac031;
+    border-radius: 20px;
+    padding: 8px 10px;
+    margin: 10px 80px;
+}
+
+
+footer{
+    width: 100%;
+    padding: 30px 0 0 20px;
+    background: #eeeeee;
+}
+/* footer text grid */
+footer .footer_main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+/* text aign in grid */
+footer .footer_main .footer_tag{
+    text-align: center;
+    font-size: 19px;
+}
+/* text color  */
+footer .footer_main .footer_tag h2{
+    color: #000;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+/* "quick link" text align and size */
+footer .footer_main .footer_tag_1{
+    text-align: center;
+    font-size: 19px;
+}
+/* link list style */
+footer .footer_main .footer_tag_1 ul{
+    list-style: none;
+}
+/* list margin */
+footer .footer_main .footer_tag_1 ul li{
+    margin: 0 15px;
+}
+/* linked tect color and size */
+footer .footer_main .footer_tag_1 ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 19px;
+    transition: 0.1s;
+}
+/* link transition */
+footer .footer_main .footer_tag_1 ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #fac031;
+    display: block;
+}
+
+footer .footer_main .footer_tag_1 ul li a:hover{
+    color: #fac031;
+}
+
+
+footer .footer_main .footer_tag p{
+    margin: 10px 0;
+}
+/* social media icon color */
+footer .footer_main .footer_tag i{
+    margin: 0 5px;
+    color: #000;
+    cursor: pointer;
+}
+/* social media icon transition */
+footer .footer_main .footer_tag i:hover{
+    color: #fac031;
+}
+/* "designed by..." text align */
+footer .end{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+/* spaned text color */
+footer .end span{
+    color: #df3416;
+    margin-left: 10px;
+}
+@media (max-width: 768px) {
+    section nav .logo img {
+        width: 80px;
+        margin: 7px 0 0 20px;
+    }
+
+    section nav ul {
+        padding-right: 20px;
+    }
+
+    section nav ul li {
+        margin: 0 10px;
+    }
+    .menu .menu_box {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        
+    }
+
+    .category .category_box {
+        grid-template-columns: 1fr 1fr;
+    }    
+    footer .footer_main {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

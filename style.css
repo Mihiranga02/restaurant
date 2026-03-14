@@ -1,0 +1,839 @@
+/* navigation bar*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins Regular";
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+}
+/* navigatin bar box */
+section nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: #fac031;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+/* logo size */
+section nav .logo img{
+    width: 120px;
+    cursor: pointer;
+    margin: 7px 0 0 50px;
+}
+/* style of list */
+section nav ul{
+    list-style: none;
+    padding-right: 50px;
+}
+/* get list in to a one line */
+section nav ul li{
+    display: inline-block;
+    margin: 0 15px;
+}
+/* text style of navigation bar */
+section nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 17px;
+    transition: 0.1s;
+}
+section nav ul li a span{
+    color: #fff;
+    background-color: #0f0f0f;
+    padding:  10px 15px;
+    border-radius: 10px;
+}
+/* text transition when cursor move */
+section nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #ffffff;
+    display: block;
+    transition: 0.2s linear;
+}
+
+section nav ul li a:hover::after{
+    width: 100%;
+}
+
+section nav ul li a:hover{
+    color: #ffffff;
+}
+
+
+/* main image 1 and text align */
+section .main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    top: 130px;
+}
+/* main text align */
+section .main .men_text h1{
+    font-size: 60px;
+    position: relative;
+    top: -90px;
+    left: 20px;
+}
+/* style of spaned text("food") */
+section .main .men_text h1 span{
+    margin-left: 15px;
+    color: #fac031;
+    font-family: mv boli;
+    line-height: 22px;
+    font-size: 70px;
+}
+/* img 1 size and position */
+section .main .main_image img{
+    width: 600px;
+    position: relative;
+    left: 70px;
+}
+/* paragraph align */
+section p{
+    font-size: 16px;
+    width: 650px;
+    text-align: justify;
+    position: relative;
+    left: 123px;
+    bottom: 120px;
+    line-height: 22px;
+}
+/* order now button style in main section */
+section .main_btn{
+    background: #fac031;
+    position: relative;
+    left: 123px;
+    bottom: 30px;
+    width: 155px;
+    cursor: pointer;
+    padding: 12px 25px;
+}
+/* order now text color */
+section .main_btn a{
+    color: #fff;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+section .main_btn i{
+    color: #fff;
+   
+}
+
+
+
+
+/*About*/
+
+.about{
+    width: 100%;
+    height: 100vh;
+    padding: 70px 0;
+}
+/* align about part */
+.about .about_main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+/* align img 2 */
+.about .about_main .image img{
+    width: 500px;
+    position: relative;
+    top: 60px;
+}
+/* style of spaned text("about") */
+.about .about_main .about_text h1 span{
+    color: #fac031;
+    margin-right: 15px;
+    font-family: mv boli;
+}
+/* align "about us" text */
+.about .about_main .about_text h1{
+    font-size: 60px;
+    position: relative;
+    bottom: 50px;
+}
+/* align why choose us text */
+.about .about_main .about_text h3{
+    font-size: 35px;
+    margin: 0 0 50px 0;
+}
+/* align paragraph */
+.about .about_main .about_text p{
+    font-size: 16px;
+    width: 650px;
+    text-align: justify;
+    margin-right: 30px;
+    line-height: 22px;
+}
+
+/*Menu*/
+
+.menu{
+    width: 100%;
+    padding: 70px 0;
+}
+/* menu text style */
+.menu h1{
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.menu h1 span{
+    color: #fac031;
+    margin-left: 15px;
+    font-family: mv boli;
+}
+
+.menu h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+/* menu boxes size */
+.menu .menu_box{
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0px;
+}
+/* shadows of menu boxes */
+.menu .menu_box .menu_card{
+    width: 315px;
+    height: 490px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px 5px rgba(0,0,0,0.2);
+}
+/* image size of menu list */
+.menu .menu_box .menu_card .menu_image{
+    width: 290px;
+    height: 235px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/* menu img transition */
+.menu .menu_box .menu_card .menu_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+
+.menu .menu_box .menu_card .menu_image:hover img{
+    transform: scale(1.1);
+}
+
+/* food name style */
+.menu .menu_box .menu_card .menu_info h2{
+    width: 60%;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    font-size: 25px;
+    color: #fac031;
+}
+/* "about food" style */
+.menu .menu_box .menu_card .menu_info p{
+    text-align: justify;
+    padding: 0 10px 0 10px;
+    margin-top: 8px;
+    line-height: 21px;
+}
+/* food price align */
+.menu .menu_box .menu_card .menu_info h3{
+    text-align: center;
+    margin-top: 10px;
+}
+/* order now icon style */
+.menu .menu_box .menu_card .menu_info .menu_icon{
+    text-align: center;
+    margin: 10px 0 10px 0;
+}
+/* menu button text style */
+.menu .menu_box .menu_card .menu_info .menu_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background: #000;
+    padding: 8px 10px;
+    margin: 0 80px;
+}
+
+/* categories */
+.category{
+    width: 100%;
+}
+/* category text style */
+.category h1{
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.category h1 span{
+    color: #fac031;
+    margin-left: 15px;
+    font-family: mv boli;
+}
+
+.category h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+/* category boxes size */
+.category .category_box{
+    
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-gap: 50px;
+    cursor: pointer;
+}
+/* shadows of category boxes */
+.category .category_box .category_card{
+    width: 115px;
+    height: 115px;
+    padding-top: 6.5px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    background-color: #dadd2854;
+    box-shadow: 0 0 100px 20px rgba(0, 0, 0, 0.2);
+}
+/* image size of menu list */
+.category .category_box .category_card .category_image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/* menu img transition */
+.category .category_box .category_card .category_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+
+.category .category_box .category_card .category_image:hover img{
+    transform: scale(1.1);
+}
+
+/* food name style */
+.category .category_box .category_card .category_info h2{
+    width: 100%;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    font-size: 18px;
+    color: #000000;
+}
+.category .category_box2{
+    
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 50px 0 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    grid-gap: 25px;
+    cursor: pointer;
+}
+/* shadows of category boxes */
+.category .category_box2 .category_card{
+    width: 115px;
+    height: 115px;
+    padding-top: 6.5px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    background-color: #dadd2854;
+    box-shadow: 0 0 100px 20px rgba(0, 0, 0, 0.2);
+}
+/* image size of menu list */
+.category .category_box2 .category_card .category_image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/* menu img transition */
+.category .category_box2 .category_card .category_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s;
+}
+
+.category .category_box2 .category_card .category_image:hover img{
+    transform: scale(1.1);
+}
+
+/* food name style */
+.category .category_box2 .category_card .category_info h2{
+    width: 100%;
+    text-align: center;
+    margin: 10px auto 10px auto;
+    font-size: 18px;
+    color: #000000;
+}
+/*Gallary*/
+
+.gallary{
+    width: 100%;
+    padding: 90px 0;
+}
+/* "gallery" text align */
+.gallary h1{
+    padding-bottom: 30px;
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* spaned text style */
+.gallary h1 span{
+    margin-left: 15px;
+    color: #fac031;
+    font-family: mv boli;
+}
+/* spaned text underline */
+.gallary h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+/* img box alignment */
+.gallary .gallary_image_box{
+    width: 95%;
+    padding-left: 10px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-gap: 10px;
+}
+/* img boxes cursor transition */
+.gallary .gallary_image_box .gallary_image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+}
+
+.gallary .gallary_image_box .gallary_image img{
+    width: 100%;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+/* transition opacity */
+.gallary .gallary_image_box .gallary_image:hover img{
+    opacity: 1;
+}
+
+
+
+/*Review*/
+
+.review{
+    width: 100%;
+    height: 110vh;
+    padding: 0px 0;
+}
+/* "review" text align */
+.review h1{
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* spaned text style */
+.review h1 span{
+    margin-left: 15px;
+    color: #fac031;
+    font-family: mv boli;
+}
+/* review text underline */
+.review h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    position: relative;
+    bottom: 15px;
+    display: block;
+}
+
+.review .review_box{
+    width: 95%;
+    margin: 70px auto;
+    display: flex;
+}
+/* review box shadow */
+.review .review_box .review_card{
+    width: 350px;
+    height: 535px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    border-radius: 40px;
+    padding: 8px 20px;
+    margin: 0 8px;
+}
+/* review_box align */
+.review .review_box .review_card .review_profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+}
+/* reviewers image size and alignment */
+.review .review_box .review_card .review_profile img{
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 5px solid #cccccc;
+}
+/* review text align */
+.review .review_box .review_card .review_text{
+    text-align: center;
+}
+/* reviewer name color */
+.review .review_box .review_card .review_text .name{
+    color: #fac031;
+    
+}
+/* review align */
+.review .review_box .review_card .review_text p{
+    text-align: center;
+    line-height: 22px;
+    transition: 0.3s;
+}
+/* review transition */
+.review .review_box .review_card:hover .review_text p{
+    margin-top: 5px;
+}
+
+
+
+/*Order*/
+
+.fast_delevery{
+    width: 100%;
+    height: 80vh;
+    padding: 60px 0;
+    background-image: url(image/bg2.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.fast_delevery ul{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    grid-gap: 0px;
+}
+.fast_delevery ul li{
+    list-style: none;
+}
+ul li .delevery_image img {
+    width: 500px;
+
+}
+
+ul li h1{
+    padding-top: 50px;
+    color: #fac031;
+    font-size: 60px;
+    margin-left: 15px;
+}
+ul h1 span{
+    color: #0f0f0f;
+    font-style: italic;
+    font-size: 40px;
+}
+
+
+
+/*Team*/
+/* background image alignment */
+.team{
+    width: 100%;
+    height: 70vh;
+    
+    background-image: url(image/bg1.jpg);
+    background-size: cover;
+    background-position: center;
+}
+/* "our team" text alignment */
+.team h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    margin-bottom: 80px;
+}
+/* spaned text style */
+.team h1 span{
+    color: #fac031;
+    margin-left: 15px;
+    font-family: mv boli;
+}
+/* underline style */
+.team h1 span::after{
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #fac031;
+    display: block;
+    position: relative;
+    bottom: 15px;
+}
+
+.team .team_box{
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 35%;
+}
+/* team box and shadow */
+.team .team_box .profile{
+    width: 130px;
+    height:50px;
+    border-radius: 20px;
+    margin: 0 15px;
+    display: flex;
+    align-items: justify;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+/* profile image alignment */
+.team .team_box .profile img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    margin-top: -140px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+/* profile info transition */
+.team .team_box .profile .info{
+    position: absolute;
+    text-align: center;
+    top: 15%;
+    transition: 0.3s;
+}
+
+.team .team_box .profile:hover .info{
+    margin-top: 5px;
+}
+/* name color */
+.team .team_box .profile .info .name{
+    color: #fac031;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+
+
+/*Footer*/
+
+footer{
+    width: 100%;
+    padding: 30px 0 0 20px;
+    background: #eeeeee;
+}
+/* footer text grid */
+footer .footer_main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+/* text aign in grid */
+footer .footer_main .footer_tag{
+    text-align: center;
+    font-size: 19px;
+}
+/* text color  */
+footer .footer_main .footer_tag h2{
+    color: #000;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+/* "quick link" text align and size */
+footer .footer_main .footer_tag_1{
+    text-align: center;
+    font-size: 19px;
+}
+/* link list style */
+footer .footer_main .footer_tag_1 ul{
+    list-style: none;
+}
+/* list margin */
+footer .footer_main .footer_tag_1 ul li{
+    margin: 0 15px;
+}
+/* linked tect color and size */
+footer .footer_main .footer_tag_1 ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 19px;
+    transition: 0.1s;
+}
+/* link transition */
+footer .footer_main .footer_tag_1 ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #fac031;
+    display: block;
+}
+
+footer .footer_main .footer_tag_1 ul li a:hover{
+    color: #fac031;
+}
+
+
+footer .footer_main .footer_tag p{
+    margin: 10px 0;
+}
+/* social media icon color */
+footer .footer_main .footer_tag i{
+    margin: 0 5px;
+    color: #000;
+    cursor: pointer;
+}
+/* social media icon transition */
+footer .footer_main .footer_tag i:hover{
+    color: #fac031;
+}
+/* "designed by..." text align */
+footer .end{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+/* spaned text color */
+footer .end span{
+    color: #df3416;
+    margin-left: 10px;
+}
+
+/* General Mobile Styles */
+@media (max-width: 768px) {
+    section nav .logo img {
+        width: 80px;
+        margin: 7px 0 0 20px;
+    }
+
+    section nav ul {
+        padding-right: 20px;
+    }
+
+    section nav ul li {
+        margin: 0 10px;
+    }
+
+    section .main {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    section .main .men_text h1 {
+        font-size: 40px;
+    }
+
+    section .main .main_image img {
+        width: 300px;
+        margin: 20px 0;
+    }
+
+    section p {
+        width: 90%;
+        font-size: 14px;
+        margin: auto;
+    }
+
+    .about .about_main {
+        flex-direction: column;
+    }
+
+    .about .about_main .image img {
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .about .about_main .about_text {
+        text-align: center;
+    }
+
+    .menu .menu_box {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+
+    .category .category_box {
+        grid-template-columns: 1fr 1fr;
+    }
+    .category .category_box2 {
+        grid-template-columns: 1fr 1fr;
+        padding-left: 70px;
+        grid-gap: 100px;
+    }
+    
+    footer .footer_main {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
