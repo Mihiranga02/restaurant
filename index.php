@@ -24,18 +24,23 @@ if ($pdo) {
 <head>
     
     <title><?php echo SITE_NAME; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="image/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
     .cart-badge {
-        background: #fac031;
-        color: #000;
+        background: #000;
+        color: #fac031;
         border-radius: 50%;
         padding: 2px 6px;
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         font-weight: 700;
         margin-left: 3px;
+        vertical-align: middle;
+        display: inline-block;
+        min-width: 20px;
+        text-align: center;
     }
     </style>
 </head>
@@ -48,14 +53,28 @@ if ($pdo) {
                 <a href="#Home"><img src="image/logo 3.png"></a>
             </div>
 
-            <ul> 
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul id="nav-menu"> 
                 <li><a href="#Home">Home</a></li>
                 <li><a href="#About">About</a></li>
                 <li><a href="#Menu">Menu</a></li>
                 <li><a href="#Gallary">Gallary</a></li>
                 <li><a href="#Review">Review</a></li>
                 <?php if (isLoggedIn()): ?>
-                <li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart <?php $cnt = getCartCount(); if ($cnt > 0): ?><span class="cart-badge"><?php echo $cnt; ?></span><?php endif; ?></a></li>
+                <?php $cnt = getCartCount(); ?>
+                <li>
+                    <a href="cart.php" class="cart-link">
+                        <i class="fa fa-shopping-cart"></i> Cart
+                        <?php if ($cnt > 0): ?>
+                        <span class="cart-badge" id="cart-badge"><?php echo $cnt; ?></span>
+                        <?php else: ?>
+                        <span class="cart-badge" id="cart-badge" style="display:none;">0</span>
+                        <?php endif; ?>
+                    </a>
+                </li>
                 <li><a href="logout.php">Logout (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
                 <?php else: ?>
                 <li><a href="login.php">Login</a></li>
@@ -141,16 +160,12 @@ if ($pdo) {
                     stir-fried with vegetables, meat, and spices.   
                 </p>
                 <h3>Rs.850.00</h3>
-                <?php if (!empty($item['product_id'])): ?>
-                <form method="POST" action="<?php echo $basePath; ?>cart.php" style="margin-top:8px;">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="<?php echo (int)$item['product_id']; ?>">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="redirect" value="pages/category.php?category=<?php echo urlencode($slug); ?>">
-                    <button type="submit" class="menu_btn" style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
-                </form>
-            <?php else: ?>
-                <a href="pages/category.php?category=kottu" class="menu_btn">Add to Cart</a>
+                <?php if (!empty($popProducts['kottu'])): ?>
+                <button type="button" class="menu_btn add-to-cart-btn"
+                        data-product-id="<?php echo $popProducts['kottu']; ?>"
+                        style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
+                <?php else: ?>
+                <a href="pages/category.php?category=kottu" class="menu_btn">View Menu</a>
                 <?php endif; ?>
             </div>
          </div> 
@@ -170,16 +185,12 @@ if ($pdo) {
                     cheese, and olive oil.
                 </p>
                 <h3>Rs.600.00</h3>
-                <?php if (!empty($item['product_id'])): ?>
-                <form method="POST" action="<?php echo $basePath; ?>cart.php" style="margin-top:8px;">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="<?php echo (int)$item['product_id']; ?>">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="redirect" value="pages/category.php?category=<?php echo urlencode($slug); ?>">
-                    <button type="submit" class="menu_btn" style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
-                </form>
-            <?php else: ?>
-                <a href="pages/category.php?category=noodles" class="menu_btn">Add to Cart</a>
+                <?php if (!empty($popProducts['noodles'])): ?>
+                <button type="button" class="menu_btn add-to-cart-btn"
+                        data-product-id="<?php echo $popProducts['noodles']; ?>"
+                        style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
+                <?php else: ?>
+                <a href="pages/category.php?category=noodles" class="menu_btn">View Menu</a>
                 <?php endif; ?>
             </div>
 
@@ -199,16 +210,12 @@ if ($pdo) {
                 </p>
    
                 <h3>Rs.350.00</h3>
-                <?php if (!empty($item['product_id'])): ?>
-                <form method="POST" action="<?php echo $basePath; ?>cart.php" style="margin-top:8px;">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="<?php echo (int)$item['product_id']; ?>">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="redirect" value="pages/category.php?category=<?php echo urlencode($slug); ?>">
-                    <button type="submit" class="menu_btn" style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
-                </form>
-            <?php else: ?>
-                <a href="pages/category.php?category=rice-curry" class="menu_btn">Add to Cart</a>
+                <?php if (!empty($popProducts['rice-curry'])): ?>
+                <button type="button" class="menu_btn add-to-cart-btn"
+                        data-product-id="<?php echo $popProducts['rice-curry']; ?>"
+                        style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
+                <?php else: ?>
+                <a href="pages/category.php?category=rice-curry" class="menu_btn">View Menu</a>
                 <?php endif; ?>
             </div>
 
@@ -227,16 +234,12 @@ if ($pdo) {
                     often topped with a fried egg
                 </p>
                 <h3>Rs.870.00</h3>
-                <?php if (!empty($item['product_id'])): ?>
-                <form method="POST" action="<?php echo $basePath; ?>cart.php" style="margin-top:8px;">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="<?php echo (int)$item['product_id']; ?>">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="redirect" value="pages/category.php?category=<?php echo urlencode($slug); ?>">
-                    <button type="submit" class="menu_btn" style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
-                </form>
-            <?php else: ?>
-                <a href="pages/category.php?category=nasi-goreng" class="menu_btn">Add to Cart</a>
+                <?php if (!empty($popProducts['nasi-goreng'])): ?>
+                <button type="button" class="menu_btn add-to-cart-btn"
+                        data-product-id="<?php echo $popProducts['nasi-goreng']; ?>"
+                        style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
+                <?php else: ?>
+                <a href="pages/category.php?category=nasi-goreng" class="menu_btn">View Menu</a>
                 <?php endif; ?>
             </div>
 
@@ -530,6 +533,11 @@ if ($pdo) {
 
     <!--Footer-->
 
+    <!-- toast notification -->
+    <div id="cart-toast" style="display:none;position:fixed;bottom:24px;right:24px;background:#fac031;color:#000;padding:12px 22px;border-radius:8px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.3);transition:opacity 0.4s;">
+        <i class="fa fa-check-circle"></i> Item added to cart!
+    </div>
+
     <footer>
         <div class="footer_main">
 
@@ -584,6 +592,94 @@ if ($pdo) {
 
 
     <script src="app.js"></script>
-    
+    <script>
+    // Hamburger menu toggle
+    (function(){
+        var btn = document.getElementById('hamburger');
+        var menu = document.getElementById('nav-menu');
+        if (btn && menu) {
+            btn.addEventListener('click', function(){
+                var open = menu.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            // Close nav when a menu link is clicked (single-page scroll)
+            menu.querySelectorAll('a').forEach(function(a){
+                a.addEventListener('click', function(){
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    })();
+
+    // AJAX add-to-cart
+    (function () {
+        var actionUrl = 'cart-action.php';
+
+        function showToast() {
+            var toast = document.getElementById('cart-toast');
+            if (!toast) return;
+            toast.style.display = 'block';
+            toast.style.opacity = '1';
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(function () {
+                toast.style.opacity = '0';
+                setTimeout(function () { toast.style.display = 'none'; }, 400);
+            }, 2500);
+        }
+
+        function updateBadge(count) {
+            var badge = document.getElementById('cart-badge');
+            if (!badge) return;
+            if (count > 0) {
+                badge.textContent = count;
+                badge.style.display = '';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('click', function (e) {
+            var btn = e.target.closest('.add-to-cart-btn');
+            if (!btn) return;
+            var productId = parseInt(btn.dataset.productId, 10);
+            if (!productId) return;
+            btn.disabled = true;
+            fetch(actionUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'add', product_id: productId, quantity: 1 })
+            })
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                if (data.success) {
+                    showToast();
+                    updateBadge(data.cartCount);
+                }
+            })
+            .catch(function () {
+                var toast = document.getElementById('cart-toast');
+                if (toast) {
+                    toast.style.display = 'block';
+                    toast.style.opacity = '1';
+                    toast.innerHTML = '<i class="fa fa-times-circle"></i> Could not add item. Please try again.';
+                    toast.style.background = '#e74c3c';
+                    toast.style.color = '#fff';
+                    clearTimeout(toast._timer);
+                    toast._timer = setTimeout(function () {
+                        toast.style.opacity = '0';
+                        setTimeout(function () {
+                            toast.style.display = 'none';
+                            toast.innerHTML = '<i class="fa fa-check-circle"></i> Item added to cart!';
+                            toast.style.background = '';
+                            toast.style.color = '';
+                        }, 400);
+                    }, 3000);
+                }
+            })
+            .finally(function () { btn.disabled = false; });
+        });
+    })();
+    </script>
 </body>
 </html>

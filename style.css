@@ -769,6 +769,29 @@ footer .end span{
     margin-left: 10px;
 }
 
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 20px;
+    z-index: 1100;
+}
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #000;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
 /* General Mobile Styles */
 @media (max-width: 768px) {
     section nav .logo img {
@@ -776,12 +799,36 @@ footer .end span{
         margin: 7px 0 0 20px;
     }
 
+    .hamburger {
+        display: flex;
+    }
+
     section nav ul {
-        padding-right: 20px;
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: #fac031;
+        padding: 10px 0 20px;
+        z-index: 1050;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    section nav ul.open {
+        display: flex;
     }
 
     section nav ul li {
-        margin: 0 10px;
+        display: block;
+        margin: 0;
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    section nav ul li a {
+        font-size: 16px;
     }
 
     section .main {
@@ -802,6 +849,7 @@ footer .end span{
         width: 90%;
         font-size: 14px;
         margin: auto;
+        left: 0;
     }
 
     .about .about_main {
@@ -817,9 +865,24 @@ footer .end span{
         text-align: center;
     }
 
+    .about .about_main .about_text p {
+        width: 90%;
+        margin: 0 auto;
+    }
+
     .menu .menu_box {
         grid-template-columns: 1fr 1fr;
         grid-gap: 10px;
+    }
+
+    .menu .menu_box .menu_card {
+        width: 100%;
+        height: auto;
+        padding-bottom: 14px;
+    }
+
+    .menu .menu_box .menu_card .menu_image {
+        width: 100%;
     }
 
     .category .category_box {
@@ -834,6 +897,23 @@ footer .end span{
     footer .footer_main {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu .menu_box {
+        grid-template-columns: 1fr;
+    }
+
+    .menu h1 {
+        font-size: 36px;
+    }
+
+    .category .category_box,
+    .category .category_box2 {
+        grid-template-columns: 1fr;
+        padding-left: 0;
+        grid-gap: 15px;
     }
 }
 

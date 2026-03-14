@@ -242,30 +242,118 @@ footer .end span{
     color: #df3416;
     margin-left: 10px;
 }
+/* cart badge */
+.cart-badge {
+    background: #000;
+    color: #fac031;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-left: 3px;
+    vertical-align: middle;
+    display: inline-block;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* hamburger button */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 20px;
+    z-index: 1100;
+}
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #000;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
 @media (max-width: 768px) {
     section nav .logo img {
         width: 80px;
         margin: 7px 0 0 20px;
     }
 
+    .hamburger {
+        display: flex;
+    }
+
     section nav ul {
-        padding-right: 20px;
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: #fac031;
+        padding: 10px 0 20px;
+        z-index: 1050;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    section nav ul.open {
+        display: flex;
     }
 
     section nav ul li {
-        margin: 0 10px;
+        display: block;
+        margin: 0;
+        text-align: center;
+        padding: 8px 0;
     }
+
+    section nav ul li a {
+        font-size: 16px;
+    }
+
     .menu .menu_box {
         grid-template-columns: 1fr 1fr;
         grid-gap: 10px;
-        
+    }
+
+    .menu .menu_box .menu_card {
+        width: 100%;
+        height: auto;
+        padding-bottom: 14px;
+    }
+
+    .menu .menu_box .menu_card .menu_image {
+        width: 100%;
+        height: 160px;
     }
 
     .category .category_box {
         grid-template-columns: 1fr 1fr;
-    }    
+    }
+
     footer .footer_main {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu .menu_box {
+        grid-template-columns: 1fr;
+    }
+
+    .menu .menu_box .menu_card {
+        width: 100%;
+    }
+
+    .menu h1 {
+        font-size: 36px;
     }
 }
