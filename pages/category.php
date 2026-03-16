@@ -71,6 +71,11 @@ if ($slug === '' || !in_array($slug, $validSlugs, true)) {
 include '../includes/header.php';
 ?>
 
+<!-- toast notification -->
+<div id="cart-toast" style="display:none;position:fixed;bottom:24px;right:24px;background:#fac031;color:#000;padding:12px 22px;border-radius:8px;font-weight:700;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,0.3);transition:opacity 0.4s;">
+    <i class="fa fa-check-circle"></i> Item added to cart!
+</div>
+
 <!-- catogary menu -->
 <div class="menu" id="Menu">
 
@@ -93,13 +98,12 @@ include '../includes/header.php';
             <h2><?php echo htmlspecialchars($item['name']); ?></h2>
             <h3><?php echo htmlspecialchars($item['price']); ?></h3>
             <?php if (!empty($item['product_id'])): ?>
-                <form method="POST" action="<?php echo $basePath; ?>cart.php" style="margin-top:8px;">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="product_id" value="<?php echo (int)$item['product_id']; ?>">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="redirect" value="pages/category.php?category=<?php echo urlencode($slug); ?>">
-                    <button type="submit" class="menu_btn" style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;">Add to Cart</button>
-                </form>
+                <button type="button"
+                        class="menu_btn add-to-cart-btn"
+                        data-product-id="<?php echo (int)$item['product_id']; ?>"
+                        style="background:#fac031;color:#000;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-weight:700;width:100%;margin-top:8px;">
+                    Add to Cart
+                </button>
             <?php else: ?>
                 <a href="<?php echo $basePath; ?>index.php#category" class="menu_btn" style="display:inline-block;background:#555;color:#ccc;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:700;">View Menu</a>
             <?php endif; ?>
@@ -109,5 +113,76 @@ include '../includes/header.php';
 
 <?php endif; ?>
 </div>
+
+<script>
+(function () {
+    var actionUrl = '<?php echo $basePath; ?>cart-action.php';
+
+    function showToast() {
+        var toast = document.getElementById('cart-toast');
+        toast.style.display = 'block';
+        toast.style.opacity = '1';
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(function () {
+            toast.style.opacity = '0';
+            setTimeout(function () { toast.style.display = 'none'; }, 400);
+        }, 2500);
+    }
+
+    function updateBadge(count) {
+        var badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        if (count > 0) {
+            badge.textContent = count;
+            badge.style.display = '';
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.add-to-cart-btn');
+        if (!btn) return;
+
+        var productId = parseInt(btn.dataset.productId, 10);
+        if (!productId) return;
+
+        btn.disabled = true;
+        fetch(actionUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'add', product_id: productId, quantity: 1 })
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+            if (data.success) {
+                showToast();
+                updateBadge(data.cartCount);
+            }
+        })
+        .catch(function () {
+                var toast = document.getElementById('cart-toast');
+                if (toast) {
+                    toast.style.display = 'block';
+                    toast.style.opacity = '1';
+                    toast.innerHTML = '<i class="fa fa-times-circle"></i> Could not add item. Please try again.';
+                    toast.style.background = '#e74c3c';
+                    toast.style.color = '#fff';
+                    clearTimeout(toast._timer);
+                    toast._timer = setTimeout(function () {
+                        toast.style.opacity = '0';
+                        setTimeout(function () {
+                            toast.style.display = 'none';
+                            toast.innerHTML = '<i class="fa fa-check-circle"></i> Item added to cart!';
+                            toast.style.background = '';
+                            toast.style.color = '';
+                        }, 400);
+                    }, 3000);
+                }
+            })
+        .finally(function () { btn.disabled = false; });
+    });
+})();
+</script>
 
 <?php include '../includes/footer.php'; ?>

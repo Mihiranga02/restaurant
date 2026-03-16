@@ -24,10 +24,16 @@ function currentUser(): ?array {
 }
 
 function getCartCount(): int {
-    if (!isLoggedIn()) return 0;
-    $pdo = getDbConnection();
-    if (!$pdo) return 0;
-    $stmt = $pdo->prepare('SELECT COALESCE(SUM(quantity),0) FROM cart WHERE user_id = ?');
-    $stmt->execute([$_SESSION['user_id']]);
-    return (int)$stmt->fetchColumn();
+    if (isLoggedIn()) {
+        $pdo = getDbConnection();
+        if (!$pdo) return 0;
+        $stmt = $pdo->prepare('SELECT COALESCE(SUM(quantity),0) FROM cart WHERE user_id = ?');
+        $stmt->execute([$_SESSION['user_id']]);
+        return (int)$stmt->fetchColumn();
+    }
+    // Guest: count items from session cart
+    if (!empty($_SESSION['cart'])) {
+        return (int)array_sum(array_map('intval', $_SESSION['cart']));
+    }
+    return 0;
 }
